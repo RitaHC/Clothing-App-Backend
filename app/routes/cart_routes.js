@@ -16,22 +16,48 @@ const router = express.Router()
 //====================== INDEX CARTS =======================
 // INDEX -> /cart/
 // All Carts
-router.get('/', (req,res)=> {
+router.get('/', (req,res, next)=> {
     Cart.find({})
-        .then(cart => {
-            console.log(`----CART INDEX--- No. of Carts`, cart.length)
-            res.json({cart: cart})
+        .then(carts => {
+            console.log(`----CART INDEX--- No. of Carts`, carts.length)
+            res.json({carts: carts})
             return 
         })
-        .catch(err=> console.log(err))
+        .catch(next)
 })
 
 
 
-// SHOW (active cart) -> /cart/:cartId
 
-// UPDATE (cart checkout) -> /cart/update/:cartId
+//====================== UPDATE CARTS (Checkout)=======================
+
+// UPDATE (cart checkout) -> /cart/checkout/:cartId
 // Active f when order placed
+router.patch('/checkout/:cartId', (req,res, next) => {
+    const cart = req.params.cartId
+    Cart.findById(cart)
+        .then(cart => {
+            cart.active = false
+            console.log(`ACTIVE TURN FALSE`, cart)
+            cart.save()
+        })
+        .then(cart => res.json({cart: cart}))
+        .catch(next)
+})
+
+//====================== SHOW CARTS =======================
+
+// SHOW (active cart) -> /cart/:cartId
+router.get('/:cartId', (req,res, next)=> {
+    const cart = req.params.cartId
+    Cart.findById(cart)
+        .then(cart => {
+            console.log(`--- Cart Show Page`, cart)
+            res.json({cart: cart})
+        })
+        .catch(next)
+})
+
 
 //================================  CREATE AND PUSH ITEMS ==========================
 
@@ -66,6 +92,35 @@ router.get('/:userId/:itemId', (req,res,next)=> {
         .catch(next)
 })
 
+
+//====================== UPDATE CARTS (remove Item)=======================
+
+// Update (remove item from cart) -> /cart/:cartId/:itemId
+router.patch('/:userId/:cartId/:itemId', (req, res, next)=> {
+    const cartId = req.params.cartId
+    const itemId = req.params.itemId
+    const userId = req.params.userId
+    Cart.updateOne({ _id: cartId, owner: userId, active: true }, { $pull: { products: itemId } })
+        .then(cart => {
+            console.log(`----Pop Item---`, cart)
+            res.status(200).send(cart)
+        })
+        .catch(next)
+})
+
+// Update (remove item from cart) -> /cart/:cartId/:itemId
+// router.patch('/:userId/:cartId/:itemId', (req,res, next)=> {
+//     const cart = req.params.cartId
+//     const item = req.params.itemId
+//     const user = req.params.userId
+//     Cart.findOne({active: true , owner: user})
+//         .then(cart => {
+//             console.log(`----Pop Item---`, cart)
+//             const nCart = cart.filter(product => product !== item)
+//             return nCart
+//         })
+//         .catch(next)
+// })
 
 // router.get('/:userId/:itemId', (req,res)=> {
 //     const user = req.params.userId
@@ -111,7 +166,7 @@ router.get('/:userId/:itemId', (req,res,next)=> {
 
 
 
-// Update (remove item from cart) -> /cart/:cartId/:itemId
+
 
 
 
