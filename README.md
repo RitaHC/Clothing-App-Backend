@@ -77,6 +77,38 @@
 
 ![Entity Relationship Diagram](erd.png)
 
+# Routes
+
+#### Users
+
+| **URL**          | **HTTP Verb**|**Action**|
+|------------------|--------------|----------|
+| /users/signup    | GET         | new  
+| /users/signup    | POST         | create  
+| /users/login     | GET         | login       
+| /users/login     | POST         | create       
+| /users/logout    | DELETE       | destroy   
+
+#### Menu
+
+| **URL**            | **HTTP Verb**|**Action**|
+|--------------------|--------------|----------|
+| /menu              | GET          | index    |
+| /menu/aboutus      | GET          | show     |
+
+
+#### CART
+
+| **URL**                | **HTTP Verb**|**Action**                              |
+|------------------------|--------------|----------------------------------------|
+| /cart                  | GET          | Active true Cart  
+| /cart/payment          | GET          | index      
+| /cart/checkout         | GET          | Cart History  
+| /cart/checkout/:cartId | PUT          | (Active true to false)
+| /show/:cartId          | GET          | Current Cart in use    
+| /cart/:menuId          | GET / POST   | Push items - in existing or Create Cart  
+| /cart/:id      | DELETE       | destroy  
+
 # Models
 1. User
 ```.js
