@@ -73,8 +73,8 @@ app.use(requestLogger)
 
 // register route files
 app.use('/items' ,itemRoutes)
-app.use('/user', userRoutes)
 app.use('/cart', cartRoutes)
+app.use(userRoutes)
 
 
 //////////////////////// STRIPE TESTING //////////
@@ -118,87 +118,23 @@ app.use(bodyparser.json())
 // 	res.json({error, status})
 // })
 
-// app.post('/checkout/', (req, res) => {
-// 	console.log(req.body)
-  
-// 	let error, status
-// 	const { product, token } = req.body
-  
-// 	stripe.customers
-// 	  .create({
-// 		email: token.email,
-// 		source: token.id
-// 	  })
-// 	  .then(customer => {
-// 		const key = uuid()
-  
-// 		return stripe.charges.create(
-// 		  {
-// 			amount: product.price * 100,
-// 			currency: "usd",
-// 			customer: customer.id,
-// 			metadata: { order_id: key }
-// 		  },
-// 		  { key }
-// 		)
-// 	  })
-// 	  .then(charge => {
-// 		console.log("-------- CHARGE -------", { charge })
-// 		status = "success"
-// 		res.json({ error, status })
-// 	  })
-// 	  .catch(err => {
-// 		console.log(err)
-// 		status = "failure"
-// 		res.json({ error, status })
-// 	  })
-//   })
-  
 
-// app.post('/checkout/', async (req, res) => {
-// 	console.log(` ------ THIS IS REQ.BODY-----`,req.body)
   
-// 	let error, status
-  
-// 	try {
-// 	  const { product, token } = req.body
-// 	  const customer = await stripe.customers.create({
-// 		email: token.email,
-// 		source: token.id
-// 	  })
-  
-// 	  const key = uuid()
-  
-// 	  const charge = await stripe.charges.create({
-// 		amount: product.price * 100,
-// 		currency: "usd",
-// 		customer: customer.id,
-// 		metadata: { order_id: key }
-// 	  }, {idempotency_key: key})
-  
-// 	  console.log("-------- CHARGE -------", { charge })
-// 	  status = "success"
-  
-// 	} catch(error) {
-// 	  console.log(error)
-// 	  status = "failure"
-// 	}
-	
-// 	res.json({ error, status })
-//   })
-  
-
+// Establisihing the checkout route, which is a post request for charges
 app.post("/checkout/", (req, res) => {
-	const { token, product } = req.body;
-	const amount = product.price * 100; // convert price to cents
+	// Token is the stripeToken
+	// item is the item or product we are asking them to add
+	const { token, item } = req.body;
+	const amount = item.price * 100; // convert price to cents
 	const currency = "usd";
+	// To charge a card we create a charge object
   
 	stripe.charges
 	  .create({
 		amount,
 		currency,
 		source: token.id,
-		description: product.description,
+		description: item.description,
 		shipping: {
 		  name: token.card.name,
 		  address: {
@@ -211,6 +147,7 @@ app.post("/checkout/", (req, res) => {
 		  },
 		},
 	  })
+	  // we console.log the charge and give a success msg
 	  .then((charge) => {
 		console.log("Charge:", charge);
 		res.json({ success: true });
