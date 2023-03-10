@@ -18,6 +18,7 @@ const router = express.Router()
 // All Carts
 router.get('/', (req,res, next)=> {
     Cart.find({})
+        .populate('products')
         .then(carts => {
             console.log(`----CART INDEX--- No. of Carts`, carts.length)
             res.json({carts: carts})
@@ -36,6 +37,7 @@ router.get('/', (req,res, next)=> {
 router.patch('/checkout/:cartId', (req,res, next) => {
     const cart = req.params.cartId
     Cart.findById(cart)
+        .populate('products')
         .then(cart => {
             cart.active = false
             console.log(`ACTIVE TURN FALSE`, cart)
@@ -48,14 +50,32 @@ router.patch('/checkout/:cartId', (req,res, next) => {
 //====================== SHOW CARTS =======================
 
 // SHOW (active cart) -> /cart/:cartId
-router.get('/:cartId', (req,res, next)=> {
-    const cart = req.params.cartId
-    Cart.findById(cart)
+// router.get('/:cartId', (req,res, next)=> {
+//     const cart = req.params.cartId
+//     Cart.findById(cart)
+//         .then(cart => {
+//             console.log(`--- Cart Show Page`, cart)
+//             res.json({cart: cart})
+//         })
+//         .catch(next)
+// })
+
+router.get('/:userId', (req,res,next) => {
+    const user = req.params.userId
+    Cart.findOne({owner: user, active: true})
+        .populate('products')
         .then(cart => {
-            console.log(`--- Cart Show Page`, cart)
-            res.json({cart: cart})
+            if(cart){
+                console.log(`------ CART EXIST -----`)
+                res.json({cart:cart})
+            } else {
+                Cart.create({owner: user})
+                    .then(cart=> {
+                        console.log(`---- NEW CART CREATED -----`)
+                        res.json({cart:cart})
+                    })
+            }
         })
-        .catch(next)
 })
 
 
@@ -63,7 +83,7 @@ router.get('/:cartId', (req,res, next)=> {
 
 // Create Cart (push item) -> /cart/:userId/:itemId
 
-router.get('/:userId/:itemId', (req,res,next)=> {
+router.post('/:userId/:itemId', (req,res,next)=> {
     const user = req.params.userId
     const item = req.params.itemId
     console.log('----USER---', user)
@@ -71,6 +91,7 @@ router.get('/:userId/:itemId', (req,res,next)=> {
 
     //Find the cart or create one
     Cart.findOne({active: true , owner: user})
+        .populate('products')
         .then(cart => {
             // If cart exists -> Push item
             if(cart) {
@@ -101,6 +122,7 @@ router.patch('/:userId/:cartId/:itemId', (req, res, next)=> {
     const itemId = req.params.itemId
     const userId = req.params.userId
     Cart.updateOne({ _id: cartId, owner: userId, active: true }, { $pull: { products: itemId } })
+        .populate('products')
         .then(cart => {
             console.log(`----Pop Item---`, cart)
             res.status(200).send(cart)

@@ -143,4 +143,24 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
 		.catch(next)
 })
 
+//==================== SHOW ONE USER ================
+router.get('/user/:userId', (req,res, next)=> {
+	const id = req.params.userId
+	User.findById(id)
+		.then(user => {
+			console.log(`--Show One User ---`, user)
+			res.json({user: user})
+		})
+		.catch(next)
+})
+//==================== Index USERS ================
+router.get('/users', (req,res,next) => {
+	User.find({})
+		.then(users=> {
+			console.log(`----Users Index----`, users)
+			res.json({users:users})
+		})
+		.catch(next)
+})
+
 module.exports = router
