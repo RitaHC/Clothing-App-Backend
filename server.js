@@ -7,6 +7,11 @@ const bodyparser = require('body-parser')
 const stripe = require('stripe')('sk_test_51MjOxGGWn0da1VDTUWK22U0AZYQIbKTMLHK38UwqwApO0HuX3BLgpi8yHcyKLf1sfYTpMlYdcX7tsA3jr6HHW5UY00hIPnYgZd')
 const uuid = require('uuid').v4
 
+//////////////// SEARCH BAR ///////////
+const algoloasearch = require('algoliasearch')('9a53e299ada486948be053c276b7500f')
+
+
+
 /////////////////////////////////////////
 
 // require route files

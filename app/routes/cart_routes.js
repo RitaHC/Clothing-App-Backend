@@ -113,8 +113,72 @@ router.post('/:userId/:itemId', (req,res,next)=> {
         .catch(next)
 })
 
+// =================== Remove 1 =================
+// router.patch('/remove/:userId/:cartId/:itemId', (req, res, next)=> {
+//     const cartId = req.params.cartId
+//     const itemId = req.params.itemId
+//     const userId = req.params.userId
+//     Cart.updateOne({ _id: cartId, owner: userId, active: true}, { $pull: { products: itemId } })
+//         .populate('products')
+//         .then(cart => {
+//             console.log(`----Pop Item---`, cart)
+//             res.status(200).send(cart)
+//         })
+//         .catch(next)
+// })
 
-//====================== UPDATE CARTS (remove Item)=======================
+// router.patch('/remove/:userId/:cartId/:itemId', (req, res, next)=> {
+//     const cartId = req.params.cartId;
+//     const itemId = req.params.itemId;
+//     const userId = req.params.userId;
+
+//     Cart.findOneAndUpdate(
+//         { _id: cartId, owner: userId, active: true, products: itemId },
+//         { $pull: { products: itemId } },
+//         { new: true, populate: 'products' }
+//     )
+//     .then(cart => {
+//         if (!cart) {
+//             return res.status(404).send('Cart not found');
+//         }
+
+//         console.log(`Removed item ${itemId} from cart`, cart);
+//         res.status(200).send(cart);
+//     })
+//     .catch(next);
+// });
+
+router.patch('/remove/:userId/:cartId/:itemId', (req, res, next)=> {
+    const cartId = req.params.cartId;
+    const itemId = req.params.itemId;
+    const userId = req.params.userId;
+
+    Cart.findOne({ _id: cartId, owner: userId, active: true })
+        .populate('products')
+        .then(cart => {
+            if (!cart) {
+                return res.status(404).send('Cart not found');
+            }
+            // Find the index of the an item with this id
+            const index = cart.products.findIndex(product => product._id.equals(itemId));
+            if (index === -1) {
+                return res.status(404).send('Item not found in cart');
+            }
+            // Slplicing out 1 item at that index
+            cart.products.splice(index, 1);
+            return cart.save();
+        })
+        .then(cart => {
+            console.log(`Removed item ${itemId} from cart`, cart);
+            res.status(200).send(cart);
+        })
+        .catch(next);
+});
+
+
+  
+
+//====================== UPDATE CARTS (remove All Items)=======================
 
 // Update (remove item from cart) -> /cart/:cartId/:itemId
 router.patch('/:userId/:cartId/:itemId', (req, res, next)=> {
@@ -129,6 +193,7 @@ router.patch('/:userId/:cartId/:itemId', (req, res, next)=> {
         })
         .catch(next)
 })
+
 
 // Update (remove item from cart) -> /cart/:cartId/:itemId
 // router.patch('/:userId/:cartId/:itemId', (req,res, next)=> {
