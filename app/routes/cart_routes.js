@@ -97,8 +97,9 @@ router.post('/:userId/:itemId', (req,res,next)=> {
             if(cart) {
                 console.log(`====== FIRST IF CONSOLE ======`, cart)
                 cart.products.push(item)
-                return cart.save()
                 res.json({cart: cart})
+                return cart.save()
+                
             } else {
                 // Else create a cart and push item
                 Cart.create({owner: user})
