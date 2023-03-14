@@ -13,6 +13,12 @@ const itemSchema = new Schema(
 		img:{
         	type: String
     	},
+		img1:{
+			type: String
+		},
+		img2:{
+			type: String
+		},
         price: {
 			 type: Number,
 			required: true 
