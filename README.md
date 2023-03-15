@@ -1,10 +1,10 @@
 
-# Epicene Fashion
-### Gender Neutral Clothing App
+# ShopoHolic - Fashion Clothing App
+
 
 
 ## User Story
- We are a gender neutral clothing line which aims to provide clothing for all curves of body and life. Our users can find a home page (landing page), where they can see our catalogue and view dresses. They can also filter the items depening on the style or colors.
+ We are a women's  clothing line which aims to provide clothing and accessories for women. Our users can view our products, add, reduce and delete items from the cart and place an order with us (Stripe Payment Gateway), upon payment they can download their payment receipt. Additionally, they can also view the earlier orders placed.
 
  We provide our company details and website info at our home page to create reliability.
 
@@ -18,25 +18,22 @@
 
  - Place Order
     - `Select size`
-    - `Add to Cart` and `order total`
+    - `Add to Cart`, `Reduce Item from Cart`, `Delete Item form Cart` & `order total`
     - `Make payment`
-    - `View previous orders`
+	- `Stripe Payment Gateway`
+    - `View Order History`
    
 
  - Payment Gateway
 	- `Stripe API`
 	- `Download E-receipt`
-		- `AWS S3`
+		- `jspdf`, `html2canvas`
 
  - Footer Links
-    - `Scan qr code`
-    - `Location on google maps`
-    - `Contact Details`
-    -  Vision / Motive
+    - `Contact Details`, `Links`
 
  - Bonus
-	- `Wishlist for our customers`
-    - `ChatBot`
+    - `ChatBot - Upcoming`
 
 	
 
@@ -47,7 +44,10 @@
 3. Node.js
 4. Npm and its packages
     - `bcrypt`
-    - `Socket.io`
+    - `Stripe`
+    - `html2canvas`
+    - `jspdf`
+    - `ReactPlayer`
     - `Cors`
 	- `Kommunicate.io`
 5. React.js
@@ -99,15 +99,15 @@
 
 #### CART
 
-| **URL**                | **HTTP Verb**|**Action**                              |
-|------------------------|--------------|----------------------------------------|
-| /cart                  | GET          | Active true Cart  
-| /cart/payment          | GET          | index      
-| /cart/checkout         | GET          | Cart History  
-| /cart/checkout/:cartId | PUT          | (Active true to false)
-| /show/:cartId          | GET          | Current Cart in use    
-| /cart/:menuId          | GET / POST   | Push items - in existing or Create Cart  
-| /cart/:id      | DELETE       | destroy  
+| **URL**                               | **HTTP Verb**|**Action**                              |
+|---------------------------------------|--------------|----------------------------------------|
+| /cart/                                | GET          | All Cart Index
+| /show/:cartId                         | GET          | Current Cart in use    
+| /cart/:menuId                         | GET / POST   | Push items - in existing or Create Cart  
+| /cart/:userid                         | GET          | Show Active Cart
+| /cart/:userId/:itemId                 | POST         | Create / Push Item
+| /cart/remove/:userId/:cartId/:itemId  | PATCH        | Remove 1 item  
+| /cart/:userId/:cartId/:itemId         | PATCH        | Remove all Items having same Id from Cart
 
 # Models
 1. User
