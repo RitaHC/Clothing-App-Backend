@@ -47,6 +47,17 @@ router.patch('/checkout/:cartId', (req,res, next) => {
         .catch(next)
 })
 
+router.get('/checkout/:userId', (req,res,next) => {
+    const id = req.params.userId
+    Cart.find({owner: id ,active: false})
+        .populate('products')
+        .then(carts => {
+            console.log(`All negative Carts`, carts)
+            res.json({carts: carts})
+        })
+        .catch(next)
+})
+
 //====================== SHOW CARTS =======================
 
 // SHOW (active cart) -> /cart/:cartId
