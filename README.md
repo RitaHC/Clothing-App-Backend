@@ -58,20 +58,24 @@
 # Wireframes
 
 1. Home Page
-![wireframe](images/home.png)
+![wireframe](images/HomeScreen.png)
 
-2. Items Page
-![wireframe](images/itemsPage.png)
+2. Products Page
+![wireframe](images/ProductsPage.png)
+![wireframe](images/ProductsPage2.png)
 
 3. User Cart 
-![wireframe](images/userCart.png)
+![wireframe](images/Cart.png)
+![wireframe](images/Cart2.png)
 
 4. Payment Gateway
-![wireframe](images/payments.png)
+![wireframe](images/StripePayment.png)
 
-5. Stretch-goal: ChatBot
-![wireframe](images/chatPage.png)
+5. Payment Receipt
+![wireframe](images/PaymentReceipt.png)
 
+6. Order History
+![wireframe](images/OrderHistory.png)
 
 # Entity Relationship Diagram
 
