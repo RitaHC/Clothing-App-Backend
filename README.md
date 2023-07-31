@@ -1,6 +1,9 @@
 
 # ShopoHolic - Fashion Clothing App
 
+## Deployed Link:
+https://fashion-shopping-app.netlify.app/
+
 
 
 ## User Story
