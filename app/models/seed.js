@@ -45,9 +45,9 @@ const seed = [
     {
       style: 'Dresses',
       size: ['Fit all'],
-      img: 'https://media.tedbaker.com/t_pdp_dt_xlg_3-5m,f_auto/Product/Womens/266260_LILAC_1',
-      img1: 'https://media.tedbaker.com/t_pdp_dt_xlg_3-5m,f_auto/Product/Womens/266260_LILAC_2',
-      img2: 'https://media.tedbaker.com/t_pdp_dt_xlg_3-5m,f_auto/Product/Womens/266260_LILAC_4',
+      img: 'https://www.rosedress.com/cdn/shop/files/celebrity-bow-tie-neck-rosette-sleeveless-a-line-crepe-party-mini-dress-Hot-Pink-1_700x.jpg?v=1725262603',
+      img1: 'https://www.rosedress.com/cdn/shop/files/celebrity-bow-tie-neck-rosette-sleeveless-a-line-crepe-party-mini-dress-Hot-Pink-3_700x.jpg?v=1725262603',
+      img2: 'https://www.rosedress.com/cdn/shop/files/celebrity-bow-tie-neck-rosette-sleeveless-a-line-crepe-party-mini-dress-Hot-Pink-6_700x.jpg?v=1725262603',
       price: 50,
       title: 'pink midway',
       color: 'pink'
@@ -135,9 +135,9 @@ const seed = [
     {
       style: 'Jacket',
       size: [],
-      img: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw7c55c58f/original/90_1010049-1A07237_2L800_10_ZebraSingle-BreastedBlazer-Blazers-versace-online-store_0_1.jpg?sw=748&sh=1050&sm=fit',
-      img1: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw39b8e560/original/90_1010049-1A07237_2L800_15_ZebraSingle-BreastedBlazer-Blazers-versace-online-store_0_1.jpg?sw=748&sh=1050&sm=fit',
-      img2: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dwb6a7efc3/original/90_1010049-1A07237_2L800_18_ZebraSingle-BreastedBlazer-Blazers-versace-online-store_0_1.jpg?sw=748&sh=1050&sm=fit',
+      img: 'https://mooyius.com/cdn/shop/files/43.jpg?v=1733823737&width=1200',
+      img1: 'https://mooyius.com/cdn/shop/files/44.jpg?v=1733823737&width=1200',
+      img2: 'https://mooyius.com/cdn/shop/files/45.jpg?v=1733823737&width=1200',
       price: 50,
       title: 'Leather Lover',
       color: 'purple and black'
@@ -183,16 +183,6 @@ const seed = [
       color: 'gold'
     }
 ]
-// {
-//   style: '',
-//   size: [],
-//   img: '',
-//   img1: '',
-//   img2: '',
-//   price: 0,
-//   title: '',
-//   color: ''
-// },
   
 
 mongoose.connect(db, {
@@ -216,3 +206,5 @@ mongoose.connect(db, {
     console.log(error)
     mongoose.connection.close()
   })
+
+
