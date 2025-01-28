@@ -125,9 +125,9 @@ const seed = [
     {
       style: 'Bags',
       size: ['One Size'],
-      img: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw6bf6c8e4/original/90_DBFI040-DVIT2T_KVO41_20_LaMedusaSmallHandbag-TopHandle-versace-online-store_6_2.jpg?sw=748&sh=1050&sm=fit',
-      img1: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw9c0d17c0/original/90_DBFI040-DVIT2T_KVO41_23_LaMedusaSmallHandbag-TopHandle-versace-online-store_4_2.jpg?sw=748&sh=1050&sm=fit',
-      img2: 'https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw097dc1ab/original/90_DBFI040-DVIT2T_KVO41_28_LaMedusaSmallHandbag-TopHandle-versace-online-store_3_2.jpg?sw=748&sh=1050&sm=fit',
+      img: 'https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw0cdb09fb/original/90_1003016-1A02259_1X00V_20_La~Medusa~Patent~Mini~Bag-Bags-Versace-online-store_1_1.jpg?sw=850&q=85&strip=true',
+      img1: 'https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw43f4df88/original/90_1003016-1A02259_1X00V_22_La~Medusa~Patent~Mini~Bag-Bags-Versace-online-store_0_1.jpg?sw=850&q=85&strip=true',
+      img2: 'https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw1510c94a/original/90_1003016-1A02259_1X00V_24_La~Medusa~Patent~Mini~Bag-Bags-Versace-online-store_1_1.jpg?sw=850&q=85&strip=true',
       price: 100,
       title: 'Versace Gold',
       color: 'black '
@@ -145,11 +145,11 @@ const seed = [
     {
       style: 'Accessory',
       size: [],
-      img: 'https://www.bulgari.com/dw/image/v2/BCSG_PRD/on/demandware.static/-/Library-Sites-bulgariSharedLibrary/default/dw53c40234/hj/2021/pdp/267144/267144+267466-worn-640x430.jpg?sw=1240',
-      img1: 'https://www.bulgari.com/dw/image/v2/BCSG_PRD/on/demandware.static/-/Library-Sites-bulgariSharedLibrary/default/dw63d18ef3/hj/2021/pdp/267144/267144-bozzetto-640x430.jpg?sw=1240',
-      img2: 'https://www.bulgari.com/dw/image/v2/BCSG_PRD/on/demandware.static/-/Library-Sites-bulgariSharedLibrary/default/dw1190c4e2/hj/2021/pdp/267144/267144-hero-1920x600.jpg?sw=1024',
+      img: 'https://www.kay.com/productimages/processed/V-350986701_0_800.jpg?pristine=true',
+      img1: 'https://www.kay.com/productimages/processed/V-350986701_1_800.jpg?pristine=true',
+      img2: 'https://www.kay.com/productimages/processed/V-350986701_2_800.jpg?pristine=true',
       price: 500,
-      title: 'Sapphire Petal ecklace',
+      title: 'Sapphire Pearl Necklace',
       color: 'blue'
     },
     {
